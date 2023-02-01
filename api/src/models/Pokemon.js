@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    health: {
+    hp: {
       type: DataTypes.INTEGER
     }, 
     attack: {
@@ -32,6 +32,14 @@ module.exports = (sequelize) => {
     weight: {
       type: DataTypes.INTEGER
     },
+    img: {
+      type: DataTypes.STRING
+    },
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
   }, {
   timestamps: false
 });
