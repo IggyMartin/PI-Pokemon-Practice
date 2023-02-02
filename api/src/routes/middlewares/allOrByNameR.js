@@ -1,6 +1,6 @@
 const { getAllPokes } = require('./getAllPokes.js')
 
-const allOrByQuery = async (req, res) => {
+const allOrByName = async (req, res) => {
     try {
         const { name } = req.query
         const allPokes = await getAllPokes()
@@ -18,4 +18,4 @@ const allOrByQuery = async (req, res) => {
     }
 }
 
-module.exports = { allOrByQuery }
+module.exports = { allOrByName }

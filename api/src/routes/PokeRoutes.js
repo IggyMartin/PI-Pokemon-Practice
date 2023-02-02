@@ -1,9 +1,11 @@
 const { Router } = require('express')
 const router = Router()
-const { allOrByQuery } = require('./middlewares/allOrByQueryR.js')
+const { allOrByName } = require('./middlewares/allOrByNameR.js')
 const { byId } = require('./middlewares/byIdR.js')
+const { getTypes } = require('./middlewares/getTypesR')
 
-router.get('/', allOrByQuery)
+router.get('/', allOrByName)
+router.get('/types', getTypes)
 router.get('/:id', byId)
 
 module.exports = router
