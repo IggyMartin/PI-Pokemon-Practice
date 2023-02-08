@@ -7,7 +7,7 @@ const allOrByName = async (req, res) => {
         if(name) {
             const searchedPoke = allPokes.filter(pok => pok.name.toLowerCase() === name.toLowerCase())
             if(searchedPoke.length === 0) {
-                return res.status(404).send("No pokemons with that exact name")
+                return res.status(200).send("No pokemons with that exact name")
             } else {
                 return res.status(200).json(searchedPoke)
             }
