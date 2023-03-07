@@ -1,7 +1,7 @@
 const { Pokemon, Type } = require('../../db.js')
 const axios = require('axios')
 
-const apiPokes = async (req, res) => {
+const apiPokes = async () => {
     const apiPokemons = []
     const firstPetition = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40')
     const infoToAnalize = firstPetition.data.results
@@ -17,14 +17,14 @@ const apiPokes = async (req, res) => {
             speed: pok.data.stats[5].base_stat,
             height: pok.data.height,
             weight: pok.data.weight,
-            types: pok.data.types.map(t => t.type.name)
+            types: pok.data.types.map(t => t.type.name).join(", ")
         }
         apiPokemons.push(infoToSend)
     }
     return apiPokemons
 }
 
-const dbPokes = async (req, res) => {
+const dbPokes = async () => {
     const dbPokemons = await Pokemon.findAll({
         include: {
             model: Type,
@@ -37,7 +37,7 @@ const dbPokes = async (req, res) => {
     return dbPokemons
 }
 
-const getAllPokes = async (req, res) => {
+const getAllPokes = async () => {
     const api = await apiPokes()
     const db = await dbPokes()
     const all = api.concat(db)
