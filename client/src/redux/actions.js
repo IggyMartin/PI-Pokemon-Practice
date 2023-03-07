@@ -10,6 +10,7 @@ export function getAllPokes() {
     }
 }
 
+
 export function searchByName(name) {
     return (dispatch) => {
         axios.get(`http://localhost:3001/pokemons?name=${name}`)
@@ -20,12 +21,32 @@ export function searchByName(name) {
                 payload: data
             })
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+        })
     }
 }
 
 export function cleanPokesArray() {
     return {
         type: "CLEAN_POKEMONS_ARRAY"
+    }
+}
+
+export function getById(id) {
+    return function(dispatch) {
+        axios.get(`http://localhost:3001/pokemons/${id}`)
+        .then(response => {
+            dispatch({
+                type: "GET_BY_ID",
+                payload: response.data
+            })
+        })
+    }
+}
+
+export function cleanPokeId() {
+    return {
+        type: "CLEAN_POKE_ID",
     }
 }

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Navbar from './Navbar'
 import { getAllPokes } from '../redux/actions'
 import Card from './Card'
-import ReloadPokes from './ReloadPokesBtn'
 
 export default function Home() {
     let pokesToRender = []
@@ -23,17 +22,15 @@ export default function Home() {
                 pokesToRender.length ? (
                     pokesToRender.map(poke => {
                         return (
-                            <Card id={poke.id}
-                                  name={poke.name}
-                                  img={poke.img}
-                                  types={poke.types}/>
+                            <div key={poke.id}>
+                                <Card id={poke.id}
+                                      name={poke.name}
+                                      img={poke.img}
+                                      types={poke.types}/>
+                            </div>
                         )
                     })
-                ) : (
-                    typeof(pokemons) === 'string' ? (
-                    <ReloadPokes message={pokemons}/>
-                    ) : <p>Loading...</p>
-                )
+                ) : typeof(pokemons) === 'string' ? <p>{pokemons}</p> : <p>Loading...</p>
             }
         </>
     )

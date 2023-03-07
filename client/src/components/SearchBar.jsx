@@ -19,18 +19,25 @@ class SearchBar extends React.Component {
         })
     }
 
-    getByName = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault()
-        this.props.cleanPokesArray()
-        this.props.searchByName(this.state.searched)
+        if(this.state.searched === "") {
+            alert("Search by exact name")
+        } else {
+            this.props.cleanPokesArray()
+            this.props.searchByName(this.state.searched)
+            this.setState({
+                searched: ""
+            })
+        }
     }
 
     render() {
         return (
-            <>
-                <input type="text" onChange = {this.handleChange}placeholder="Search..."/>
-                <button type="submit" onClick={this.getByName}>Search</button>
-            </>
+            <form onSubmit={this.handleSubmit}>
+                <input type="text" value={this.state.searched} onChange = {this.handleChange} placeholder="Search..."/>
+                <button type="submit">Search</button>
+            </form>
         )
     }
 }
